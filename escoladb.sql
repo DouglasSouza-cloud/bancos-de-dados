@@ -187,3 +187,72 @@ GROUP BY A.nome;
 SELECT idade, COUNT(*) AS quantidade_alunos -- Lista número de alunos por faixa-etária
 FROM Alunos
 GROUP BY idade;
+
+--------------------------
+-- Atividades Avançadas --
+--------------------------
+
+SELECT cidade, COUNT(*) AS quantidade_alunos -- Lista Cidades que possuem mais de 2 Alunos
+FROM Alunos
+GROUP BY cidade
+HAVING COUNT(*) > 2;
+
+SELECT C.nome_curso, AVG(M.nota) AS media_notas -- Lista cursos cuja média de notas é maior que 8
+FROM Matriculas AS M
+JOIN Cursos AS C
+ON M.id_curso = C.id_curso
+GROUP BY C.nome_curso
+HAVING AVG(M.nota) > 8;
+
+SELECT C.nome_curso, COUNT(M.id_matricula) AS quantidade -- Liste o cursos que possuem mais de 2 matrículas
+FROM Matriculas AS M
+JOIN Cursos AS C
+ON M.id_curso = C.id_curso
+GROUP BY C.nome_curso
+HAVING COUNT(M.id_matricula) > 2;
+
+SELECT A.nome, SUM(M.faltas) AS total_faltas -- Lista os alunos cuja soma de faltas  seja maior que 5
+FROM Matriculas AS M
+JOIN Alunos AS A
+ON M.id_aluno = A.id_aluno
+GROUP BY A.nome
+HAVING SUM(M.faltas) > 5;
+
+SELECT C.nome_curso, MIN(M.nota) AS menor_nota -- Lista os cursos cuja menor nota seja maior que 6
+FROM Matriculas AS M
+JOIN Cursos AS C
+ON M.id_curso = C.id_curso
+GROUP BY C.nome_curso
+HAVING MIN(M.nota) > 6;
+
+SELECT nome_curso, carga_horaria -- Lista cursos ordenados pela carga horária em ordem decrescente
+FROM Cursos
+ORDER BY carga_horaria DESC;
+
+SELECT nome, idade -- Lista cursos ordenados pela idade maior para menor
+FROM Alunos
+ORDER BY idade DESC;
+
+SELECT C.nome_curso, AVG(M.nota) AS media_notas -- Lista média de notas por curso ordenada da maior para menor
+FROM Matriculas AS M
+JOIN Cursos AS C
+ON M.id_curso = C.id_curso
+GROUP BY C.nome_curso
+ORDER BY media_notas DESC;
+
+SELECT cidade, COUNT(*) AS quantidade_alunos -- Lista as cidades ordenadas por quantidade de Alunos
+FROM Alunos
+GROUP BY cidade
+ORDER BY quantidade_alunos DESC;
+
+SELECT A.nome, AVG(M.nota) AS media_notas
+FROM Alunos AS A
+JOIN Matriculas AS M
+ON A.id_aluno = M.id_aluno
+GROUP BY A.id_aluno, A.nome
+HAVING AVG(M.nota) > 7
+ORDER BY media_notas DESC;
+
+------------------------------------------------
+-- Cabo aqui, Não aguento mais, Professor T-T --
+------------------------------------------------
