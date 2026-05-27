@@ -250,7 +250,7 @@ FROM Alunos AS A
 JOIN Matriculas AS M
 ON A.id_aluno = M.id_aluno
 GROUP BY A.id_aluno, A.nome
-HAVING AVG(M.nota) > 7
+HAVING AVG(M.nota) > 8
 ORDER BY media_notas DESC;
 
 ------------------------------------------------
