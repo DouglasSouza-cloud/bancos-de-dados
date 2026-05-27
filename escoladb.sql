@@ -1,3 +1,4 @@
+drop database if exists EscolaDB;
 CREATE DATABASE EscolaDB;
 USE EscolaDB;
 
@@ -250,9 +251,12 @@ FROM Alunos AS A
 JOIN Matriculas AS M
 ON A.id_aluno = M.id_aluno
 GROUP BY A.id_aluno, A.nome
-HAVING AVG(M.nota) > 8
+HAVING AVG(M.nota) > 7
 ORDER BY media_notas DESC;
 
+select nome 
+FROM Alunos
+where idade = (select max(idade) from Alunos);
 ------------------------------------------------
 -- Cabo aqui, Não aguento mais, Professor T-T --
 ------------------------------------------------
